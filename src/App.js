@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Typography, withStyles } from "@material-ui/core";
+import { TextField, Typography, withStyles } from "@material-ui/core";
 import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
@@ -47,17 +47,42 @@ const AccordionDetails = withStyles((theme) => ({
   },
 }))(MuiAccordionDetails);
 
+const normalizeString = (question) =>
+  question
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
 function App() {
   const [faqs, setFaqs] = useState([]);
+  const [filteredFaqs, setFilteredFaqs] = useState([]);
   const [expanded, setExpanded] = useState("");
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     fetchFaq();
   }, []);
 
+  useEffect(() => {
+    updateFaqs();
+  }, [filter]);
+
+  const updateFaqs = () => {
+    if (!filter) {
+      setFilteredFaqs(faqs);
+      return;
+    }
+    const newFaq = faqs.filter((faq) => {
+      return normalizeString(faq.pergunta).includes(normalizeString(filter));
+    });
+    setFilteredFaqs(newFaq);
+  };
+
   async function fetchFaq() {
     const res = await axios.get("https://trabalho-faq.herokuapp.com/faq");
     setFaqs(res.data);
+    setFilteredFaqs(res.data);
   }
 
   const handleChange = (panel) => (_, newExpanded) => {
@@ -67,8 +92,16 @@ function App() {
   return (
     <div className="App">
       <p className="title">COVID-19 FAQ</p>
+      <div className="filter">
+        <TextField
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          label="Pesquisar"
+          variant="outlined"
+        />
+      </div>
       <div className="faq">
-        {faqs.map((faq) => {
+        {filteredFaqs.map((faq) => {
           return (
             <Accordion
               square

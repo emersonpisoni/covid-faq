@@ -1,10 +1,12 @@
 .App {
   display: flex;
-  background: linear-gradient(
+  /* background: linear-gradient(
     315deg,
     rgb(225 255 254) 0%,
     rgba(129, 234, 255, 1) 100%
-  );
+  ); */
+  background-image: url('covid.jpg');
+  background-size: cover;
   height: 100vh;
   width: 100%;
   padding: 20px;
@@ -17,12 +19,33 @@
   margin: 40px 0;
   font-weight: bold;
   font-size: 30px;
-  font-family: system-ui;
+  color: white;
+  font-family: cursive;
 }
 
 .App > .faq {
   flex-direction: column;
   box-shadow: 3px 3px 6px 0px #949494;
+}
+
+.App > .filter {
+  margin: 10px 0;
+}
+
+.App > .filter > .MuiFormControl-root > .MuiInputBase-root > fieldset {
+  border-color: white;
+}
+
+.App > .filter > .MuiFormControl-root > .MuiInputBase-root > input {
+  color: white;
+}
+
+.App > .filter > .MuiFormControl-root > label {
+  color: white;
+}
+
+.App > .filter > div {
+  width: 100%;
 }
 
 * {
