@@ -1,13 +1,6 @@
 .App {
   display: flex;
-  /* background: linear-gradient(
-    315deg,
-    rgb(225 255 254) 0%,
-    rgba(129, 234, 255, 1) 100%
-  ); */
-  background-image: url('covid.jpg');
-  background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   padding: 20px;
   flex-direction: column;
@@ -28,7 +21,13 @@
   box-shadow: 3px 3px 6px 0px #949494;
 }
 
+.App > .faq > .MuiAccordion-root {
+  background-color: #ffffffc2;
+}
+
 .App > .filter {
+  display: flex;
+  align-items: center;
   margin: 10px 0;
 }
 
@@ -51,4 +50,10 @@
 * {
   box-sizing: border-box;
   margin: 0;
+}
+
+body {
+  background-image: url('covid.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }

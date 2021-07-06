@@ -1,0 +1,15 @@
+.faqs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.faqs > table {
+  background-color: #ffffffc2;
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 5px;
+  padding: 10px;
+}

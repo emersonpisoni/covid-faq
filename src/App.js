@@ -5,6 +5,8 @@ import { TextField, Typography, withStyles } from "@material-ui/core";
 import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
+import { Link } from "react-router-dom";
+import Button from "./components/Button";
 
 const Accordion = withStyles({
   root: {
@@ -99,6 +101,9 @@ function App() {
           label="Pesquisar"
           variant="outlined"
         />
+        <Link to="/admin">
+          <Button>Admin</Button>
+        </Link>
       </div>
       <div className="faq">
         {filteredFaqs.map((faq) => {
